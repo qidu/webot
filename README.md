@@ -16,7 +16,12 @@ A simple web-based chat UI that connects to the Clawdbot gateway.
 
 ```bash
 cd projects/webot
+npm init .
 npm install
+```
+
+then run
+```bash
 npm run dev
 ```
 

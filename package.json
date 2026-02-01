@@ -1,0 +1,24 @@
+{
+  "name": "webot",
+  "version": "1.0.0",
+  "description": "WebChat client for Clawdbot gateway",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "serve": "tsx src/server.ts"
+  },
+  "dependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.6.0",
+    "typescript": "^5.3.0",
+    "ws": "^8.19.0"
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "vite": "^7.3.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
