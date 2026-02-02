@@ -3,7 +3,7 @@
 import { createServer } from "node:http";
 import { extname, join } from "node:path";
 import { statSync, readFileSync } from "node:fs";
-import { WebSocketServer, type WebSocket } from "ws";
+import { WebSocketServer, WebSocket } from "ws";
 
 // DEBUG LOG: Enable verbose logging
 const DEBUG = process.env.DEBUG === "true";
@@ -53,7 +53,7 @@ function serveStaticFile(filePath: string, res: { writeHead: (code: number, head
       "Content-Type": contentType,
       "Cache-Control": "no-cache",
     });
-    res.end(content);
+    res.end(content.toString());
     return true;
   } catch {
     return false;
