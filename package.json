@@ -5,8 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
-    "serve": "tsx src/server.ts"
+    "dev:http-only": "tsx watch src/server-http-only.ts -- --standalone",
+    "build": "npm run build:tsc && npm run build:copy-files",
+    "build:tsc": "tsc",
+    "build:copy-files": "node scripts/copy-files.js",
+    "serve": "tsx src/server.ts",
+    "serve:http-only": "tsx src/server-http-only.ts -- --standalone"
   },
   "dependencies": {
     "@types/node": "^20.10.0",

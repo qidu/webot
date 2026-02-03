@@ -8,11 +8,11 @@
                                                                                                                                            
   Required Integration                                                                                                                     
                                                                                                                                            
-  - HTTP: Serve static files at http://localhost:18789/webot (via moltbot handler chain)                                                   
-  - WebSocket: Frontend connects directly to ws://localhost:18789/ (moltbot gateway)                                                       
+  - HTTP: Serve static files at http://127.0.0.1:18789/webot (via moltbot handler chain)                                                   
+  - WebSocket: Frontend connects directly to ws://127.0.0.1:18789 (moltbot gateway)                                                       
   - No WebSocket proxy needed in webot server                                                                                              
   
-  # Goal: webot HTTP services run at http://localhost:18789/webot, websocket endpoint just use moltbot's gateway ws://localhost:18789/
+  # Goal: webot HTTP services run at http://127.0.0.1:18789/webot, websocket endpoint just use moltbot's gateway ws://127.0.0.1:18789
 
 
   Key Changes Needed                                                                                                                       
@@ -30,7 +30,7 @@
   // Current: connects to local proxy                                                                                                      
   const gatewayUrl = url || this.configService.getGatewayUrl();                                                                            
   // Should be: connect directly to gateway                                                                                                
-  const gatewayUrl = "ws://localhost:18789/";                                                                                              
+  const gatewayUrl = "ws://127.0.0.1:18789";                                                                                              
                                                                                                                                            
   3. Create Moltbot Integration Handler                                                                                                    
                                                                                                                                            
@@ -66,7 +66,7 @@
         // Return gateway config                                                                                                           
         res.writeHead(200, { "Content-Type": "application/json" });                                                                        
         res.end(JSON.stringify({                                                                                                           
-          gatewayUrl: "ws://localhost:18789/",  // Direct to gateway                                                                       
+          gatewayUrl: "ws://127.0.0.1:18789",  // Direct to gateway                                                                       
           gatewayToken: process.env.GATEWAY_TOKEN                                                                                          
         }));                                                                                                                               
         return true;                                                                                                                       
@@ -85,7 +85,7 @@
   // Remove proxy logic, connect directly to gateway                                                                                       
   async connect(url?: string): Promise<void> {                                                                                             
     // Use provided URL or default to gateway                                                                                              
-    const gatewayUrl = url || "ws://localhost:18789/";                                                                                     
+    const gatewayUrl = url || "ws://127.0.0.1:18789";                                                                                     
     // ... connection logic ...                                                                                                            
   }                                                                                                                                        
                                                                                                                                            

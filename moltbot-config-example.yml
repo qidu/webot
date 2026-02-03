@@ -1,0 +1,153 @@
+# Moltbot configuration with webot integration
+# Place this in ~/.moltbot/config.yml or your project config
+
+# Gateway configuration
+gateway:
+  # Port for gateway server (default: 18789)
+  port: 18789
+
+  # Bind addresses (loopback, lan, tailnet, auto)
+  bind: "auto"
+
+  # Authentication configuration
+  auth:
+    # Authentication mode: token, password, local, tailscale
+    mode: "token"
+
+    # Token for token-based auth (required for token mode)
+    token: "your-gateway-token-here"
+
+    # Password for password-based auth (required for password mode)
+    # password: "your-password-here"
+
+  # TLS configuration (optional)
+  tls:
+    enabled: false
+    # cert: "/path/to/cert.pem"
+    # key: "/path/to/key.pem"
+
+  # Webot integration configuration
+  webot:
+    # Enable webot integration (default: true)
+    enabled: true
+
+    # Base path for webot (default: "/webot")
+    basePath: "/webot"
+
+    # Directory containing webot static files
+    # Default: node_modules/webot (if installed as dependency)
+    # staticDir: "/path/to/webot/static/files"
+
+    # Gateway WebSocket URL (overrides default)
+    # Default: "ws://localhost:18789/"
+    # gatewayUrl: "ws://localhost:18789/"
+
+    # Gateway auth token (overrides environment/gateway config)
+    # Default: uses gateway.auth.token or GATEWAY_TOKEN env var
+    # gatewayToken: "your-gateway-token-here"
+
+    # Enable debug logging for webot (default: false)
+    debug: false
+
+  # Control UI configuration (built-in web interface)
+  controlUi:
+    enabled: true
+    basePath: "/control-ui"
+
+  # HTTP endpoints configuration
+  http:
+    endpoints:
+      # OpenAI-compatible chat completions endpoint
+      chatCompletions:
+        enabled: false
+
+      # OpenResponses API endpoint
+      responses:
+        enabled: false
+
+  # Hooks configuration
+  hooks:
+    basePath: "/hooks"
+    # token: "your-hooks-token-here"
+
+# Agent configuration
+agents:
+  # Default agent settings
+  default:
+    # Model provider (anthropic, openai, etc.)
+    provider: "anthropic"
+
+    # Model name
+    model: "claude-3-5-sonnet-20241022"
+
+    # System prompt
+    systemPrompt: "You are a helpful AI assistant."
+
+# Channel configurations
+channels:
+  # Slack integration
+  slack:
+    enabled: false
+    # token: "xoxb-your-slack-token"
+
+  # Discord integration
+  discord:
+    enabled: false
+    # token: "your-discord-token"
+
+  # WebSocket channel (for direct connections)
+  websocket:
+    enabled: true
+
+# Tool configurations
+tools:
+  # Enable built-in tools
+  enabled: true
+
+  # Custom tools configuration
+  custom:
+    enabled: false
+    # directory: "/path/to/custom/tools"
+
+# Plugin system configuration
+plugins:
+  enabled: false
+  # directory: "/path/to/plugins"
+
+# Logging configuration
+logging:
+  # Log level: debug, info, warn, error
+  level: "info"
+
+  # Log format: json, pretty, simple
+  format: "pretty"
+
+  # Output: console, file, both
+  output: "console"
+
+  # File path for file output
+  # file: "/path/to/moltbot.log"
+
+# Development settings
+development:
+  # Enable hot reload for agents/channels
+  hotReload: false
+
+  # Enable verbose logging
+  verbose: false
+
+# Example environment variables that can override config:
+# CLAWDBOT_GATEWAY_PORT=18789
+# CLAWDBOT_GATEWAY_AUTH_TOKEN=your-token
+# DEBUG=true
+
+# To install webot as a dependency in moltbot:
+# 1. Add to package.json: "webot": "file:../path/to/webot" (local) or "webot": "github:user/webot" (GitHub)
+# 2. Run: pnpm install webot
+# 3. The static files will be available at: node_modules/webot/
+
+# Integration notes:
+# 1. Webot will be accessible at: http://localhost:18789/webot
+# 2. Frontend WebSocket connects directly to: ws://localhost:18789/
+# 3. Authentication token is injected by frontend in connect request
+# 4. The /api/config endpoint provides gateway URL (but not token) to frontend
