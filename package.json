@@ -2,7 +2,19 @@
   "name": "webot",
   "version": "1.0.0",
   "description": "WebChat client for Clawdbot gateway",
+  "keywords": [],
+  "homepage": "https://github.com/qidu/webot#readme",
+  "bugs": {
+    "url": "https://github.com/qidu/webot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qidu/webot.git"
+  },
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
@@ -14,11 +26,7 @@
     "typescript": "^5.3.0",
     "ws": "^8.19.0"
   },
-  "main": "index.js",
   "devDependencies": {
     "vite": "^7.3.1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }
